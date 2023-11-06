@@ -51,7 +51,7 @@
 import axios from "./config/axios";
 import toastr from "toastr";
 export default {
-    name: "Posts",
+    //name: "PostsList",
     data() {
         return {
             posts: [], // Initial state

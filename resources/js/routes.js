@@ -1,9 +1,28 @@
-import PostsList from "./Pages/Post/posts.vue";
-import CreatePost from "./Pages/Post/createpost.vue";
-import EditPost from "./Pages/Post/editpost.vue";
-export const routes = [
+import App from "./Pages/App.vue";
+import PostsList from "./Pages/posts.vue";
+import CreatePost from "./Pages/createpost.vue";
+import EditPost from "./Pages/editpost.vue";
+import Register from "./Pages/auth/Register.vue";
+import Login from "./Pages/auth/Login.vue";
+
+ const routes = [
     {
-        path: "posts",
+        path: "/",
+        name: "app",
+        component: App,
+    },
+    {
+        path: "/register",
+        name: "Register",
+        component: Register,
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
+    },
+    {
+        path: "/posts",
         name: "PostsList",
         component: PostsList,
     },
@@ -18,3 +37,5 @@ export const routes = [
         component: EditPost,
     },
 ];
+
+export default routes;

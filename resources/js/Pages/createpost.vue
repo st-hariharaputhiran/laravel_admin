@@ -45,7 +45,7 @@ import axios from "./config/axios";
 import toastr from "toastr";
 
 export default {
-    name: "Posts",
+    //name: "CreatePost",
     data() {
         return {
             post: {}, // Initial state

@@ -39,7 +39,3 @@ try {
 
     import("bootstrap");
 } catch (e) {}
-
-window.vueMachines = {
-    sidebar: import("./Pages/sidebar.vue").default,
-};

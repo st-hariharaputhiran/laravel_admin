@@ -1,8 +1,8 @@
 <template lang="">
     <li class="nav-item">
         <a
-            href="{{ route('posts') }}"
-            class="nav-link {{ Request::is('posts') ? 'active' : '' }}"
+            href=""
+            class="nav-link "
         >
             <i class="nav-icon fas fa-home"></i>
             <p>Posts</p>
@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-    name: "Menu",
+    //name: "Menu",
 };
 </script>
 <style lang=""></style>
