@@ -41,9 +41,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes: routes,
 });
-app.prototype.$user = document
-    .querySelector("meta[name='user_id']")
-    .getAttribute("content");
+    
 
 app.use(router);
 app.mount("#app");

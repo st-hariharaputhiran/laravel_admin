@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        Javascript::put([ 'user.name' => $user->name, 'email' => $user->email ]);
-        return view('home');
+        //Javascript::put([ 'user.name' => $user->name, 'email' => $user->email ]);
+        return view('home',["user"=>$user]);
     }
 }

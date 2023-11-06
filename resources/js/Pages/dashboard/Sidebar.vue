@@ -15,7 +15,7 @@
           <img src="../assets/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Carlos Carvalho</a>
+          <a href="#" class="d-block"></a>
         </div>
       </div>
 

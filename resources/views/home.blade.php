@@ -1,6 +1,7 @@
 @extends('layouts.app')
 <script>
-    alert(user.name);
+    var app1 = {{ Js::from($user) }};
+    console.log(app1);
 </script>
 @section('content')
     <div class="container-fluid">
