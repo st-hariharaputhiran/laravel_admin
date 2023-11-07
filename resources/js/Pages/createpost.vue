@@ -57,6 +57,7 @@ export default {
                 let res = await axios.post("/api/posts/save", this.post);
                 toastr.success("Post saved Successfully");
                 this.post = {};
+                this.$router.push({ path: "posts" });
             } catch (error) {
                 let errors = error.response.data.errors;
                 for (let key in errors) {

@@ -1,15 +1,19 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\API\BaseController as BaseController;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     function index()
     {
-        return view('post',['posts' => Post::all()]);
+        //return view('post',['posts' => Post::all()]);
+        $post=Post::all();
+        //dd($post);
         //return response(['status' => 'success', 'posts' => Post::all(), 'code' => 200]);
+        return $this->sendResponse($post,"Success");
     }
 
     function save(Request $request)
@@ -20,14 +24,14 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->save();
 
-        return response(['status' => 'success', 'post' => $post, 'code' => 200]);
+        return $this->sendResponse($post,"Success");
     }
 
     // get post by id
     function get($id)
     {
         $post = Post::find($id);
-        return response(['status' => 'success', 'post' => $post, 'code' => 200]);
+        return $this->sendResponse($post,"Success");
     }
 
     function update(Request $request)
@@ -38,14 +42,14 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->save();
 
-        return response(['status' => 'success', 'post' => $post, 'code' => 200]);
+        return $this->sendResponse($post,"Success");
     }
 
     function delete($id)
     {
         $post = Post::find($id);
         $post->delete();
-        return response(['status' => 'success', 'message' => 'deleted successfully', 'code' => 200]);
+        return $this->sendResponse([],"Success");
     }
 }
 ?>

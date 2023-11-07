@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\RegisterController;
+use App\Http\Controllers\api\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
 
+Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/delete/{id}', [PostController::class, 'delete']);
 Route::get('/posts/get/{id}', [PostController::class, 'get']);
 Route::post('/posts/save', [PostController::class, 'save']);

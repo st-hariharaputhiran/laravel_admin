@@ -3,7 +3,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
                 <h1>Posts</h1>
-                <router-link to="/create-post" class="btn btn-secondary"
+                <router-link to="/createpost" class="btn btn-secondary"
                     >Create</router-link
                 >
             </div>
@@ -50,8 +50,10 @@
 <script>
 import axios from "./config/axios";
 import toastr from "toastr";
+import { isProxy, toRaw } from "vue";
+
 export default {
-    //name: "PostsList",
+    name: "PostsList",
     data() {
         return {
             posts: [], // Initial state
@@ -63,7 +65,10 @@ export default {
     methods: {
         async getPosts() {
             let res = await axios.get("/api/posts");
-            this.posts = res.data.posts;
+            console.log(res.data);
+            this.posts = res.data.data;
+            //this.posts.push(res.data.post);
+            console.log(this.posts);
         },
         async deletePost(id) {
             let res = await axios.get(`/api/posts/delete/${id}`);

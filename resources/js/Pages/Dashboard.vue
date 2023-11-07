@@ -1,5 +1,8 @@
 <template>
-    <body class="hold-transition sidebar-mini layout-fixed">
+    <body
+        v-if="$store.state.user.token"
+        class="hold-transition sidebar-mini layout-fixed"
+    >
         <div class="wrapper">
             <Preloader></Preloader>
             <Navbar></Navbar>
@@ -10,7 +13,7 @@
 
                 <section class="content">
                     <div class="container-fluid">
-                        <ExampleForm></ExampleForm>
+                        <router-view></router-view>
                     </div>
                 </section>
             </div>
@@ -19,7 +22,6 @@
             <ControlSidebar></ControlSidebar>
         </div>
     </body>
-    
 </template>
 
 <script>
@@ -34,7 +36,7 @@ import Navbar from "./dashboard/Navbar.vue";
 import Sidebar from "./dashboard/Sidebar.vue";
 import Footer from "./dashboard/Footer.vue";
 import ControlSidebar from "./dashboard/ControlSidebar.vue";
-import 'select2';
+import "select2";
 
 export default {
     //name: "Dashboard",
