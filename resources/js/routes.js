@@ -4,6 +4,7 @@ import CreatePost from "./Pages/createpost.vue";
 import EditPost from "./Pages/editpost.vue";
 import Register from "./Pages/auth/Register.vue";
 import Login from "./Pages/auth/Login.vue";
+import Dashboard from "./Pages/Dashboard.vue";
 
  const routes = [
     {
@@ -15,6 +16,11 @@ import Login from "./Pages/auth/Login.vue";
         path: "/register",
         name: "Register",
         component: Register,
+    },
+    {
+        path: "/dashboard",
+        name: "Dashboard",
+        component: Dashboard,
     },
     {
         path: "/login",

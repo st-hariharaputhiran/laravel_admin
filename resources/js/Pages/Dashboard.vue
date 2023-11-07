@@ -19,6 +19,7 @@
             <ControlSidebar></ControlSidebar>
         </div>
     </body>
+    
 </template>
 
 <script>
@@ -33,6 +34,7 @@ import Navbar from "./dashboard/Navbar.vue";
 import Sidebar from "./dashboard/Sidebar.vue";
 import Footer from "./dashboard/Footer.vue";
 import ControlSidebar from "./dashboard/ControlSidebar.vue";
+import 'select2';
 
 export default {
     //name: "Dashboard",
@@ -53,15 +55,14 @@ export default {
     methods: {
         initializeSelect2() {
             //Initialize Select2 Elements
-            $(".select2").select2();
+            $(".select2").select2;
 
             //Initialize Select2 Elements
-            $(".select2bs4").select2( );
+            $(".select2bs4").select2;
         },
     },
     mounted() {
         this.initializeSelect2();
-        console.log(this.user);
     },
 };
 </script>

@@ -22,7 +22,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Auth::routes();
 
 Route::get('/{any}', function () {
-    return view('app');
+    return view('home');
 })->where('any', '.*');
 
 Route::fallback(function () {

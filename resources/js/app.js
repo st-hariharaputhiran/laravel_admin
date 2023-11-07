@@ -7,6 +7,7 @@ import {
 } from "vue-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "toastr/build/toastr.min.css";
+import store from './store';
 import routes from "./routes";
 
 import App from "./Pages/App.vue";
@@ -19,4 +20,5 @@ const router = createRouter({
     
 
 app.use(router);
+app.use(store);
 app.mount("#app");

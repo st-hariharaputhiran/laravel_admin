@@ -8,14 +8,14 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Register a new membership</p>
 
-                <form method="post" action="">
+                <form method="post" @submit.prevent="submitForm" action="">
                     <div class="input-group mb-3">
                         <input
                             type="text"
                             name="fullname"
                             class="form-control"
                             placeholder="Full name"
-                            v-model="state.fullname"
+                            v-model="model.fullname"
                         />
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -24,13 +24,11 @@
                         </div>
 
                         <span
-                            v-if="v$.fullname.$error"
+                        v-if="model.fullname == '' && v$.model.fullname.$error"
                             class="invalid-feedback"
-                            role="alert"
+                            role="alert" style="display:block"
                         >
-                            <strong>{{
-                                v$.fullname.$errors[0].$message
-                            }}</strong>
+                            <strong>Enter Your Fullname</strong>
                         </span>
                     </div>
 
@@ -40,7 +38,7 @@
                             name="email"
                             class="form-control"
                             placeholder="Email"
-                            v-model="state.email"
+                            v-model="model.email"
                         />
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -49,11 +47,18 @@
                         </div>
 
                         <span
-                            v-if="v$.email.$error"
+                        v-if="model.email == '' && v$.model.email.$error"
                             class="invalid-feedback"
-                            role="alert"
+                            role="alert" style="display:block"
                         >
-                            <strong>{{ v$.email.$errors[0].$message }}</strong>
+                            <strong>Email is Required</strong>
+                        </span>
+                        <span
+                        v-if="model.email && v$.model.email.$error"
+                            class="invalid-feedback"
+                            role="alert" style="display:block"
+                        >
+                            <strong>Enter valid Email</strong>
                         </span>
                     </div>
 
@@ -63,7 +68,7 @@
                             name="password"
                             class="form-control"
                             placeholder="Password"
-                            v-model="state.password.password"
+                            v-model="model.password.password"
                         />
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -72,13 +77,11 @@
                         </div>
 
                         <span
-                            v-if="v$.password.password.$error"
+                        v-if="model.password.password == '' && v$.model.password.password.$error"
                             class="invalid-feedback"
-                            role="alert"
+                            role="alert" style="display:block"
                         >
-                            <strong>{{
-                                v$.password.password.$errors[0].$message
-                            }}</strong>
+                            <strong>Enter Password</strong>
                         </span>
                     </div>
 
@@ -88,7 +91,7 @@
                             name="password_confirmation"
                             class="form-control"
                             placeholder="Retype password"
-                            v-model="state.password.confirm"
+                            v-model="model.password.confirm"
                         />
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -97,13 +100,18 @@
                         </div>
 
                         <span
-                            v-if="v$.password.confirm.$error"
+                        v-if="model.password.confirm == '' && v$.model.password.confirm.$error"
                             class="invalid-feedback"
-                            role="alert"
+                            role="alert" style="display:block"
                         >
-                            <strong>{{
-                                v$.password.confirm.$errors[0].$message
-                            }}</strong>
+                            <strong>Enter Confirm Password</strong>
+                        </span>
+                        <span
+                        v-if="model.password.confirm && v$.model.password.confirm.$error"
+                            class="invalid-feedback"
+                            role="alert" style="display:block"
+                        >
+                            <strong>Password and Confirm Password should be same</strong>
                         </span>
                     </div>
 
@@ -113,7 +121,6 @@
                             <button
                                 type="submit"
                                 class="btn btn-primary btn-block"
-                                @click="submitForm"
                             >
                                 Register
                             </button>
@@ -132,8 +139,10 @@
     </div>
 </template>
 <script>
-import useValidate from '@vuelidate/core';
+import useValidate from "@vuelidate/core";
+import toastr from "toastr";
 import { reactive, computed } from "vue";
+import { useVuelidate } from "@vuelidate/core";
 import {
     required,
     email,
@@ -144,62 +153,70 @@ import {
 
 export default {
     name: "Register",
-    setup() {
-        const state = reactive({
-            fullname: "",
-            email: "",
-            password: {
-                password: "",
-                confirm: "",
-            },
-        });
-        const rules = computed(() => {
-            return {
-                fullname: {
-                    required,
-                },
-                email: {
-                    required,
-                    email,
-                },
+    data: (vm) => ({
+            v$: useVuelidate(),
+            model: {
+                fullname: "",
+                email: "",
                 password: {
-                    password: { required, minLength: minLength(6) },
-                    confirm: {
-                        required,
-                        sameAs: sameAs(state.password.password),
-                    },
+                    password: "",
+                    confirm: "",
                 },
-            };
-        });
-
-        const v$ = useValidate(rules, state);
-
-        return { state, v$ };
+            },
+        }),
+    validations() {
+        return {
+            model: {
+            fullname: {
+                required,
+            },
+            email: {
+                required,
+                email,
+            },
+            password: {
+                password: { required, minLength: minLength(6) },
+                confirm: {
+                    required,
+                    sameAs: sameAs(this.model.password.password),
+                },
+            },
+        }
+    }
     },
     methods: {
         submitForm() {
-      this.v$.$validate() // checks all inputs
-      if (!this.v$.$error) {
-        // if ANY fail validation
-        this.registerUser(this.state);
-        alert('Form successfully submitted.')
-      } else {
-        alert('Form failed validation')
-        return false;
-      }
-    },
-    async registerUser(state) {
-            try {
-                let res = await axios.post("/api/register", state);
-                toastr.success("Post updated Successfully");
-            } catch (error) {
-                let errors = error.response.data.errors;
-                for (let key in errors) {
-                    toastr.error(errors[key]);
-                }
+            console.log(this.v$);
+
+            this.v$.model.$validate(); // checks all inputs
+            console.log("VMODEL",this.v$.model)
+            console.log("ERRORS",this.model.fullname)
+            if (!this.v$.model.$error) {
+                // if ANY fail validation
+                this.registerUser(this.model);
+            } else {
+                console.log("ERRORS", this.v$.model.$error);
+                return;
             }
         },
-  },
+        async registerUser(model) {
+            try {
+                let res = await axios.post("/api/register", model);
+                console.log("RES",res);
+                toastr.success("User created successfully");
+                //router.push('login');
+                this.$router.push({ path: 'login' })
+                //return;
+            } catch (error) {
+                console.log("ERROR",error);
+                // let errors = error.response.data.errors;
+                // for (let key in errors) {
+                //     toastr.error(errors[key]);
+                // }
+                return
+            }
+        },
+    },
 };
 </script>
 <style lang=""></style>
