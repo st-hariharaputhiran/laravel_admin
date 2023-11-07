@@ -45,7 +45,8 @@ import "../node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdo
 import "../node_modules/admin-lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css"
 import "../node_modules/admin-lte/plugins/bs-stepper/css/bs-stepper.min.css"
 import "../node_modules/admin-lte/plugins/dropzone/min/dropzone.min.css"
-
+import "../node_modules/admin-lte/dist/css/adminlte.min.css?v=3.2.0"
+import "../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css"
 
 library.add(fas, fab, far, faLock, faEnvelope, faFacebook, faGooglePlus);
 dom.watch()
