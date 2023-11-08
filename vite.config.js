@@ -4,7 +4,13 @@ import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
     plugins: [
-        vue(),
+        vue({
+            template: {
+              compilerOptions: {
+                isCustomElement: (tag) => ['easy-data-table'].includes(tag),
+              }
+            }
+          }),
         laravel({
             input: ["resources/sass/app.scss", "resources/js/app.js"],
             refresh: true,

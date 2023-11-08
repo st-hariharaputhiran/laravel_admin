@@ -1,5 +1,6 @@
 import "./bootstrap";
 import "admin-lte";
+
 import { createApp } from "vue";
 import {
     createRouter,
@@ -11,6 +12,11 @@ import store from './store';
 import routes from "./routes";
 
 import App from "./Pages/App.vue";
+import "https://code.jquery.com/jquery-3.7.0.js";
+
+import "https://cdn.jsdelivr.net/npm/vue@3.2.1/dist/vue.global.js";
+import "https://unpkg.com/vue3-easy-data-table";
+
 let app = createApp(App);
 
 const router = createRouter({

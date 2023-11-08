@@ -33,7 +33,7 @@ const routes = [
                 // when /user/:id/profile is matched
                 path: "/posts",
                 name: "PostsList",
-                component: PostsList,
+                component: PostsList
             },
             {
                 // UserPosts will be rendered inside User's <router-view>
