@@ -24,7 +24,7 @@ Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
 
 Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/delete/{id}', [PostController::class, 'delete']);
+Route::delete('/posts/delete/{id}', [PostController::class, 'delete']);
 Route::get('/posts/get/{id}', [PostController::class, 'get']);
 Route::post('/posts/save', [PostController::class, 'save']);
 Route::post('/posts/update', [PostController::class, 'update']);

@@ -59,8 +59,8 @@ export default {
             try {
                 let res = await axios.post("/api/posts/update", this.post);
                 toastr.success("Post updated Successfully");
-                this.getPost(this.$route.params.id);
-                this.$router.push({ path: "posts" });
+                //this.getPost(this.$route.params.id);
+                this.$router.push({ path: "/posts" });
             } catch (error) {
                 let errors = error.response.data.errors;
                 for (let key in errors) {
