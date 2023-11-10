@@ -1,7 +1,6 @@
 import App from "./Pages/App.vue";
 import PostsList from "./Pages/posts.vue";
-import CreatePost from "./Pages/createpost.vue";
-import EditPost from "./Pages/editpost.vue";
+import PostForm from "./Pages/postform.vue";
 import Register from "./Pages/auth/Register.vue";
 import Login from "./Pages/auth/Login.vue";
 import Dashboard from "./Pages/Dashboard.vue";
@@ -29,27 +28,23 @@ const routes = [
         },
         children: [
             {
-                // UserProfile will be rendered inside User's <router-view>
-                // when /user/:id/profile is matched
                 path: "/posts",
                 name: "PostsList",
                 component: PostsList
             },
             {
-                // UserPosts will be rendered inside User's <router-view>
-                // when /user/:id/posts is matched
                 path: "/exampleform",
                 component: ExampleForm,
             },
             {
-                path: "/createpost",
+                path: "/post/create",
                 name: "CreatePost",
-                component: CreatePost,
+                component: PostForm,
             },
             {
-                path: "/editpost/:id",
+                path: "/post/edit/:id",
                 name: "EditPost",
-                component: EditPost,
+                component: PostForm,
             },
         ],
     },

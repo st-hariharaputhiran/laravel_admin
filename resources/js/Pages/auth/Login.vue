@@ -50,7 +50,7 @@
                             </div>
 
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                                <button type="submit" style="background-color: #007bff !important;border-color: #007bff;" class="btn btn-primary btn-block">Sign In</button>
                             </div>
 
                         </div>

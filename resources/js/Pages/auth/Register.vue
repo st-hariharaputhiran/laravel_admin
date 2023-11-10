@@ -121,7 +121,7 @@
                             <button
                                 type="submit"
                                 class="btn btn-primary btn-block"
-                            >
+                                style="background-color: #007bff !important;border-color: #007bff;">
                                 Register
                             </button>
                         </div>
