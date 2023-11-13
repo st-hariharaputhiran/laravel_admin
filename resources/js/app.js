@@ -19,6 +19,8 @@ import "https://cdn.jsdelivr.net/npm/vue@3.2.1/dist/vue.global.js";
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 import swal from 'sweetalert2';
+import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
+
 window.Swal = swal;
 
 let app = createApp(App);
@@ -31,4 +33,5 @@ const router = createRouter({
 app.component('EasyDataTable', Vue3EasyDataTable);
 app.use(router);
 app.use(store);
+app.use(LaravelPermissionToVueJS)
 app.mount("#app");

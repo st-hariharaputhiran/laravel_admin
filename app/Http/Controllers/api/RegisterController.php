@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Http\JsonResponse;
      
@@ -31,10 +32,17 @@ class RegisterController extends BaseController
         }
      
         $input = $request->all();
+        //dd($input);
         $input['password'] = bcrypt($input['password']['password']);
         //$input['password'] = bcrypt($input['password']['password']);
         //dd($input['password']['password']);
-        $user = User::create($input);
+        $user = User::create([
+            'firstname' => $input['fullname'],
+            'email' => $input['email'],
+            'password' => $input['password'],
+            //'role_id' => 1,
+            'status' => 'active'
+        ])->assignRole('webadmin');
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
    
@@ -48,8 +56,11 @@ class RegisterController extends BaseController
      */
     public function login(Request $request): JsonResponse
     {
+        //$hashed = bcrypt($request->password);
+        //dd($hashed);
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
+            dd($user);
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             $success['name'] =  $user->name;
    

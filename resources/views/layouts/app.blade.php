@@ -6,3 +6,10 @@
     </body>
     
 </x-laravel-ui-adminlte::adminlte-layout>
+<script type="text/javascript">
+    {{ dd(\Auth::user()) }}
+    window.Laravel = {
+        csrfToken: "{{ csrf_token() }}",
+        jsPermissions: {!! auth()->check()?auth()?->user()?->jsPermissions():null !!}
+    }
+</script>

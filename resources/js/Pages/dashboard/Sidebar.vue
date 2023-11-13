@@ -66,11 +66,20 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item menu-open">
+                    <li v-if="is('webadmin')" class="nav-item menu-open">
                         <a class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 <router-link to="/posts">Posts</router-link>
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                    </li>
+                    <li v-if="is('webadmin')" class="nav-item menu-open">
+                        <a class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                <router-link to="/users">Posts</router-link>
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
