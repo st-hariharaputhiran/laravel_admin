@@ -3,6 +3,7 @@ export const getDefaultState = () => {
         isLoggedin: false,
         token: null,
         userdet: null,
+        role:null,
     };
 };
 // initial state
@@ -12,6 +13,7 @@ export default {
         isLoggedin: false,
         token: null,
         userdet: null,
+        role:null,
     },
 
     mutations: {
@@ -20,16 +22,15 @@ export default {
         },
         UPDATE_USER_TOKEN(state, payload) {
             state.token = payload;
-            console.log("PAYLOAD", state.token);
         },
         UPDATE_USER_STATUS(state, payload) {
             state.isLoggedin = payload;
-            console.log("PAYLOAD1", state.isLoggedin);
         },
         UPDATE_USER(state, payload) {
-            console.log("PAYLOAD2", payload);
             state.userdet = payload;
-            console.log("PAYLOAD2", state.userdet);
+        },
+        UPDATE_USER_ROLE(state, payload) {
+            state.role = payload;
         },
     },
     actions: {
@@ -48,9 +49,13 @@ export default {
         },
         addUserToState(context, payload) {
             var userdet = context.state.userdet;
-            console.log("PAYLOAD2", payload);
             userdet = payload;
             context.commit("UPDATE_USER", userdet);
+        },
+        addUserRoleToState(context, payload) {
+            var role = context.state.role;
+            role = payload;
+            context.commit("UPDATE_USER_ROLE", role);
         },
     },
 };

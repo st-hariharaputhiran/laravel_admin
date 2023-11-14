@@ -40,9 +40,9 @@ class RegisterController extends BaseController
             'firstname' => $input['fullname'],
             'email' => $input['email'],
             'password' => $input['password'],
-            //'role_id' => 1,
+            'role' => 'admin',
             'status' => 'active'
-        ])->assignRole('webadmin');
+        ]);
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
    
@@ -60,9 +60,9 @@ class RegisterController extends BaseController
         //dd($hashed);
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
-            dd($user);
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             $success['name'] =  $user->name;
+            $success['role'] =  $user->role;
    
             return $this->sendResponse($success, 'User login successfully.');
         } 

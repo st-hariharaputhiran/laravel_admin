@@ -25,7 +25,7 @@
         <ul class="navbar-nav ml-auto">
             <!-- Navbar Search -->
             <li class="nav-item">
-                <router-link to="/logout">Logout</router-link>
+                <router-link to="/webadmin/logout">Logout</router-link>
             </li>
         </ul>
     </nav>

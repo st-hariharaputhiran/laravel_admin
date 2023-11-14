@@ -122,6 +122,7 @@ export default {
                 
                 this.$store.dispatch('resetUserState');
                 this.$store.dispatch('addUserTokenToState', res.data.data.token);
+                this.$store.dispatch('addUserRoleToState', res.data.data.role);
                 this.$store.dispatch('updateUserStatus', 'true');
                 this.$store.dispatch('addUserToState', model.email);
                 

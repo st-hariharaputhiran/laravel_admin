@@ -1,8 +1,8 @@
 <template lang="">
     <div class="relative sm:flex sm:justify-center selection:text-white">
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-            <router-link to="/register">Register</router-link> |
-            <router-link to="/login">Login</router-link>
+            <router-link to="/webadmin/register">Register</router-link> |
+            <router-link to="/webadmin/login">Login</router-link>
         </div>
 
         <router-view name="authpage"></router-view>

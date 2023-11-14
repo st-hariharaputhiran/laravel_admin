@@ -2,8 +2,8 @@
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
-                <h1>Posts</h1>
-                <router-link to="/webadmin/post/create" class="btn btn-secondary"
+                <h1>Users</h1>
+                <router-link to="/webadmin/user/create" class="btn btn-secondary"
                     >Create</router-link
                 >
             </div>
@@ -13,12 +13,12 @@
             <template #item-operation="item">
                 <div class="operation-wrapper">
                     <img
-                        src="./images/edit.png"
+                        src="../images/edit.png"
                         class="operation-icon"
                         @click="editItem(item)"
                     />
                     <img
-                        src="./images/delete.png"
+                        src="../images/delete.png"
                         class="operation-icon"
                         @click="deleteItem(item)"
                     />
@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import axios from "./config/axios";
+import axios from "../config/axios";
 import toastr from "toastr";
 
 export default {
-    name: "PostsList",
+    name: "UsersList",
     components: {
         //EasyDataTable: window['vue3-easy-data-table'],
         //EasyDataTable: window[Vue3EasyDataTable],
@@ -42,8 +42,8 @@ export default {
         return {
             headers: [
                 { text: "ID", value: "id" },
-                { text: "TITLE", value: "title" },
-                { text: "DESCRIPTION", value: "description" },
+                { text: "EMAIL", value: "email" },
+                { text: "NAME", value: "firstname" },
                 { text: "Operation", value: "operation" },
         ],            
         items: [],
@@ -51,11 +51,11 @@ export default {
     },
 
     mounted() {
-        this.getPosts();
+        this.getUsers();
     },
     methods: {
-        async getPosts() {
-            let res = await axios.get("/api/posts");
+        async getUsers() {
+            let res = await axios.get("/api/users");
             console.log(res.data);
             //const resdata = Array.isArray(res.data.data) ? res.data.data.slice() : [];
             this.items = res.data.data;
@@ -63,13 +63,9 @@ export default {
 
             console.log(this.items);
         },
-        async deletePost(id) {
-            let res = await axios.get(`/api/posts/delete/${id}`);
-            toastr.success(res.data.message);
-            this.getPosts();
-        },
+        
         editItem(item) {
-            this.$router.push({ path: "/webadmin/post/edit/" + item.id });
+            this.$router.push({ path: "/webadmin/user/edit/" + item.id });
         },
         async deleteItem(item) {
             Swal.fire({
@@ -83,15 +79,15 @@ export default {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     await axios
-                        .delete(`/api/posts/delete/${item.id}`)
+                        .delete(`/api/users/delete/${item.id}`)
                         .then((response) => {
                             Swal.fire({
                                 icon: "success",
-                                title: "Post deleted successfully!",
+                                title: "User deleted successfully!",
                                 showConfirmButton: false,
                                 timer: 1500,
                             });
-                            this.getPosts();
+                            this.getUsers();
                             //return response
                         })
                         .catch((error) => {
