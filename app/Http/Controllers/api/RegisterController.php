@@ -41,7 +41,7 @@ class RegisterController extends BaseController
             'email' => $input['email'],
             'password' => $input['password'],
             'role' => 'admin',
-            'status' => 'active'
+            'status' => 1
         ]);
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
@@ -63,6 +63,7 @@ class RegisterController extends BaseController
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             $success['name'] =  $user->name;
             $success['role'] =  $user->role;
+            $success['status'] = $user->status;
    
             return $this->sendResponse($success, 'User login successfully.');
         } 

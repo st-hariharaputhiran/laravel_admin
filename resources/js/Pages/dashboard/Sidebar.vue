@@ -57,17 +57,9 @@
                 >
                     <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
-                        <a class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Dashboard
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                    </li>
+                    
                     <li v-if="$store.state.user.role == 'user'" class="nav-item menu-open">
-                        <a class="nav-link active">
+                        <a :class="{active: clicked}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Profile
@@ -76,19 +68,19 @@
                         </a>
                     </li>
                     <li  v-if="$store.state.user.role == 'admin'" class="nav-item menu-open">
-                        <a class="nav-link">
+                        <a :class="{active: clicked_post}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                <router-link to="/webadmin/posts">Posts</router-link>
+                                <router-link @click="clicked_post = !clicked_post;clicked_user=false" to="/webadmin/posts">Posts</router-link>
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                     </li>
                     <li v-if="$store.state.user.role == 'admin'" class="nav-item menu-open">
-                        <a class="nav-link">
+                        <a :class="{active: clicked_user}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                <router-link to="/webadmin/users">Users</router-link>
+                                <router-link @click="clicked_user = !clicked_user;clicked_post=false;" to="/webadmin/users">Users</router-link>
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -102,7 +94,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data () {
+     return {
+        clicked_post:true,
+        clicked_user: false
+     }
+   }
+};
 </script>
 
 <style></style>

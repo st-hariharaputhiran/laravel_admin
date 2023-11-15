@@ -118,15 +118,34 @@ export default {
         async loginUser(model) {
             try {
                 let res = await axios.post("/api/login", model);
-                console.log("RES",res.data.data.token);
                 
-                this.$store.dispatch('resetUserState');
-                this.$store.dispatch('addUserTokenToState', res.data.data.token);
-                this.$store.dispatch('addUserRoleToState', res.data.data.role);
-                this.$store.dispatch('updateUserStatus', 'true');
-                this.$store.dispatch('addUserToState', model.email);
+                if(res.data.data.status == 0)
+                {
+                    console.log("RES STATUS",typeof res.data.data.status);
+                //return;
+                //toastr.error(User Inactive);
+                    Swal.fire({
+                        title: "User Inactive",
+                        text: "You won't be able to login since user inactive!",
+                        icon: "error",
+                        showCancelButton: false,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Ok",
+                    }).then(async (result) => {
+                        return;
+                    });
+                    
+                }else{
+                    this.$store.dispatch('resetUserState');
+                    this.$store.dispatch('addUserTokenToState', res.data.data.token);
+                    this.$store.dispatch('addUserRoleToState', res.data.data.role);
+                    this.$store.dispatch('updateUserStatus', 'true');
+                    this.$store.dispatch('addUserToState', model.email);
+                    
+                    this.$router.push({ path: 'dashboard' }).then(() => { this.$router.go() })
+                }
                 
-                this.$router.push({ path: 'dashboard' }).then(() => { this.$router.go() })
             } catch (error) {
                 console.log("ERROR",error);
                 // let errors = error.response.data.errors;

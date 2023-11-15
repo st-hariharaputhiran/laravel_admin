@@ -16,6 +16,11 @@ const routes = [
         component: App,
     },
     {
+        path: "/",
+        name: "app",
+        component: App,
+    },
+    {
         path: "/webadmin/register",
         name: "Register",
         components: {
