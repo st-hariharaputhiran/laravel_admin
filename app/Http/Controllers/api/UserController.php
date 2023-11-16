@@ -26,7 +26,7 @@ class UserController extends BaseController
         $user->lastname = $request->lname;
         $user->email = $request->email;
         $user->password = $password;
-        $user->status = $request->status;
+        $user->status = \is_null($request->status)?0:$request->status;
         $user->role = 'user';
         $user->save();
 
@@ -51,7 +51,7 @@ class UserController extends BaseController
         $user->lastname = $request->lname;
         $user->email = $request->email;
         $user->password = $password;
-        $user->status = $request->status;
+        $user->status = \is_null($request->status)?0:$request->status;
         $user->role = 'user';
         $user->save();
 
