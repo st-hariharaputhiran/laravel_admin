@@ -235,7 +235,7 @@ export default {
                 let res = await axios.post("/api/users/update", this.model);
                 toastr.success("User updated Successfully");
                 //this.getPost(this.$route.params.id);
-                this.$router.push({ path: "/users" });
+                this.$router.push({ path: "/webadmin/users" });
             } catch (error) {
                 let errors = error.response.data.errors;
                 for (let key in errors) {
@@ -256,7 +256,7 @@ export default {
                 let res = await axios.post("/api/users/save", this.model);
                 toastr.success("User saved Successfully");
                 this.model = {};
-                this.$router.push({ path: "/users" });
+                this.$router.push({ path: "/webadmin/users" });
             } catch (error) {
                 let errors = error.response.data.errors;
                 for (let key in errors) {

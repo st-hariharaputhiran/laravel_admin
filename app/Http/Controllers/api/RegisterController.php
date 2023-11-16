@@ -40,7 +40,7 @@ class RegisterController extends BaseController
             'firstname' => $input['fullname'],
             'email' => $input['email'],
             'password' => $input['password'],
-            'role' => 'admin',
+            'role' => "admin",
             'status' => 1
         ]);
         $success['token'] =  $user->createToken('MyApp')->accessToken;

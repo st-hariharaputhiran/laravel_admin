@@ -27,6 +27,7 @@ class UserController extends BaseController
         $user->email = $request->email;
         $user->password = $password;
         $user->status = $request->status;
+        $user->role = 'user';
         $user->save();
 
         return $this->sendResponse($user,"Success");
@@ -51,6 +52,7 @@ class UserController extends BaseController
         $user->email = $request->email;
         $user->password = $password;
         $user->status = $request->status;
+        $user->role = 'user';
         $user->save();
 
         return $this->sendResponse($user,"Success");
