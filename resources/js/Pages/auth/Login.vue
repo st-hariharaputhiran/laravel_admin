@@ -123,18 +123,18 @@ export default {
                 {
                     console.log("RES STATUS",typeof res.data.data.status);
                 //return;
-                //toastr.error(User Inactive);
-                    Swal.fire({
-                        title: "User Inactive",
-                        text: "You won't be able to login since user inactive!",
-                        icon: "error",
-                        showCancelButton: false,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Ok",
-                    }).then(async (result) => {
-                        return;
-                    });
+                toastr.info("User Inactive, You won't be able to login since user inactive!");
+                    // Swal.fire({
+                    //     title: "User Inactive",
+                    //     text: "You won't be able to login since user inactive!",
+                    //     //icon: "error",
+                    //     showCancelButton: false,
+                    //     confirmButtonColor: "#3085d6",
+                    //     cancelButtonColor: "#d33",
+                    //     confirmButtonText: "Ok",
+                    // }).then(async (result) => {
+                    //     return;
+                    // });
                     
                 }else{
                     this.$store.dispatch('resetUserState');
